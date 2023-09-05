@@ -1,0 +1,41 @@
+.checkbox
+  display: flex
+  align-items: center
+  column-gap: 10px
+
+  font-size: 14px
+
+  cursor: pointer
+
+.checkboxInput
+  display: none
+
+.checkboxMark
+  position: relative
+
+  display: flex
+  justify-content: center
+  align-items: center
+  
+  width: 18px
+  height: 18px
+
+  background-color: transparent
+
+  border: 1px solid var(--primary-gray-secondary)
+  border-radius: 4px
+
+  transition: all 0.2s
+
+  svg
+    color: red
+
+.checkboxInput:checked + .checkboxMark
+  background-color: var(--neuteral-gray-background)
+  background-image: url("../../assets/icons/input-check-icon.svg")
+  background-position: center center
+  background-repeat: no-repeat
+    
+
+.checkboxInput:hover + .checkboxMark
+  transform: scale(1.1)

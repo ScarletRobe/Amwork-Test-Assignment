@@ -1,0 +1,74 @@
+@import '../../assets/styles/mixins/ellipsis/_ellipsis'
+
+.wrapper
+  padding: 4px
+  border-radius: 7px
+  background: #F4F8FF
+
+.innerWrapper
+  padding: 10px
+  border-radius: 7px
+  background: var(--neuteral-white)
+
+.taskHeader
+  display: flex
+  align-items: center
+  gap: 8px
+  margin-bottom: 8px
+
+.title
+  @include ellipsis(3)
+  color: var(--primary-blue)
+
+  &.completed
+    text-decoration: line-through
+
+.date
+  display: flex
+  justify-content: space-between
+  color: var(--statuses-green)
+  font-size: 13px
+  margin-bottom: 5px
+
+.description
+  @include ellipsis(1)
+  color: var(--neuteral-black-primary)
+  margin-bottom: 10px
+
+.additionalInfo
+  display: flex
+  justify-content: space-between
+
+.entities
+  display: flex
+  gap: 4px
+
+.tags
+  display: flex
+  gap: 15px
+
+.entity
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 20px
+  color: var(--neuteral-white)
+  border-radius: 4px
+  padding: 1px 6px 2px 6px
+  background: var(--statuses-entity-tag)
+
+.tag
+  z-index: 2
+  position: relative
+  height: 20px
+  padding: 1px 0px 2px 6px
+  border-radius: 4px 0 0 4px
+  color: var(--primary-gray-dark)
+  background-color: var(--neuteral-gray)
+
+  &::before
+    content: url(../../assets/icons/arrow.svg)
+    position: absolute
+    z-index: -1
+    right: -11px
+    top: 0

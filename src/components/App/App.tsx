@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 
 import tasksStore from "../../stores/tasksStore";
-import { todoAPi } from "../../services/todoApi";
 import { useIntersectionObserver } from "../../hooks";
 
 import Task from "../Task/Task";
@@ -11,19 +10,15 @@ import { ReactComponent as AddIcon } from "../../assets/icons/addTask.svg";
 import styles from "./App.module.sass";
 
 const App = observer(() => {
-  const [page, setPage] = useState(1);
-  const { todos, setTodos } = tasksStore;
+  const { todos, getTodos } = tasksStore;
   const intersectionRef = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(intersectionRef, {});
   const isVisible = !!entry?.isIntersecting;
 
   useEffect(() => {
     if (!isVisible) return;
-    todoAPi.get(`todos?_page=${page}&_limit=5`).then((r) => {
-      setTodos([...todos, ...r.data]);
-      setPage((state) => state + 1);
-    });
-  }, [isVisible]);
+    getTodos();
+  }, [isVisible, getTodos]);
 
   return (
     <section className={styles.wrapper}>
@@ -33,7 +28,9 @@ const App = observer(() => {
           <div className={`${styles.addTask} ${styles.headerBtn}`}>
             <AddIcon />
           </div>
-          <div className={`${styles.typeOfTask} ${styles.headerBtn}`}>2</div>
+          <div className={`${styles.typeOfTask} ${styles.headerBtn}`}>
+            {todos.length}
+          </div>
         </div>
       </header>
       <div className={styles.taskList}>

@@ -14,8 +14,6 @@ interface TaskProps {
   content: TaskInterface;
 }
 
-const MOCK_TAGS = ["Front-end"];
-
 const Task: FC<TaskProps> = observer(({ content }) => {
   const { changeIsCompleted } = tasksStore;
 
@@ -27,7 +25,6 @@ const Task: FC<TaskProps> = observer(({ content }) => {
             checked={content.completed}
             checkboxHandler={() => {
               changeIsCompleted(content.id);
-              console.log(1);
             }}
           />
           <h2
@@ -39,24 +36,17 @@ const Task: FC<TaskProps> = observer(({ content }) => {
           </h2>
         </div>
         <div className={styles.date}>
-          <p>Oct 11, 03:00 PM</p>
-          <p>Oct 12, 01:00 PM</p>
+          <p>{content.startDate}</p>
+          <p>{content.endDate}</p>
         </div>
-        <p className={styles.description}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis facere
-          reiciendis minima, quasi quaerat unde laboriosam eaque saepe
-          dignissimos. Odio quidem necessitatibus voluptate rerum qui iure
-          consequuntur distinctio consectetur laboriosam?
-        </p>
+        <p className={styles.description}>{content.description}</p>
         <div className={styles.additionalInfo}>
           <div className={styles.entities}>
-            <div className={styles.entity}>Entity</div>
+            <div className={styles.entity}>{content.enitity}</div>
             <div className={styles.tags}>
-              {MOCK_TAGS.map((tag) => (
-                <div key={tag} className={`${styles.entity} ${styles.tag}`}>
-                  {tag}
-                </div>
-              ))}
+              <div className={`${styles.entity} ${styles.tag}`}>
+                {content.tag}
+              </div>
             </div>
           </div>
           <img className={styles.authorAvatar} alt="Автор" src={imgUrl}></img>

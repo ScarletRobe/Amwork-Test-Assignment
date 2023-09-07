@@ -1,4 +1,4 @@
-import { TaskResponseInterface } from "./taskResponseInterface/taskResponseInterface";
-import { TaskInterface } from "./taskInterface/taskInterface";
+import { ITaskResponse } from "./taskResponse/taskResponse";
+import { ITask } from "./task/task";
 
-export type { TaskInterface, TaskResponseInterface };
+export type { ITask, ITaskResponse };

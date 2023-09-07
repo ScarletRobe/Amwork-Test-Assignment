@@ -1,10 +1,10 @@
 import { makeAutoObservable } from "mobx";
-import { TaskInterface } from "../types";
 import { todoAPi } from "../services/todoApi";
 import { adaptTasksResponse } from "../helpers";
+import { ITask, ITaskResponse } from "../types";
 
 class TasksStore {
-  todos: TaskInterface[] = [];
+  todos: ITask[] = [];
   #page;
 
   constructor() {
@@ -14,7 +14,7 @@ class TasksStore {
 
   getTodos = async () => {
     try {
-      const response = await todoAPi.get<TaskInterface[]>(
+      const response = await todoAPi.get<ITaskResponse[]>(
         `todos?_page=${this.#page}&_limit=5`
       );
       const adaptedResponse = adaptTasksResponse(response.data);

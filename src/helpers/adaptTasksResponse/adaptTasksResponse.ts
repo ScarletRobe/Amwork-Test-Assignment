@@ -1,9 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { TaskInterface, TaskResponseInterface } from "../../types";
+import { ITask, ITaskResponse } from "../../types";
 
-export const adaptTasksResponse = (
-  response: TaskResponseInterface[]
-): TaskInterface[] => {
+export const adaptTasksResponse = (response: ITaskResponse[]): ITask[] => {
   const dateParams = {
     month: "short",
     day: "numeric",
@@ -16,8 +14,8 @@ export const adaptTasksResponse = (
     ...task,
     startDate: faker.date.past().toLocaleDateString("en-US", dateParams),
     endDate: faker.date.future().toLocaleDateString("en-US", dateParams),
-    enitity: faker.word.adjective({ length: { min: 1, max: 12 } }),
-    tag: faker.word.adjective({ length: { min: 1, max: 12 } }),
+    enitity: faker.word.adjective({ length: { min: 1, max: 10 } }),
+    tag: faker.word.adjective({ length: { min: 1, max: 10 } }),
     description: faker.hacker.phrase(),
   }));
 };

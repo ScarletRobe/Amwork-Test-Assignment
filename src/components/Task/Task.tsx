@@ -2,8 +2,8 @@ import { FC } from "react";
 import { observer } from "mobx-react-lite";
 import classNames from "classnames";
 
-import { TaskInterface } from "../../types";
 import tasksStore from "../../stores/tasksStore";
+import { ITask } from "../../types";
 
 import Checkbox from "../checkbox/Checkbox";
 
@@ -11,7 +11,7 @@ import imgUrl from "../../assets/images/avatar.png";
 import styles from "./Task.module.sass";
 
 interface TaskProps {
-  content: TaskInterface;
+  content: ITask;
 }
 
 const Task: FC<TaskProps> = observer(({ content }) => {
